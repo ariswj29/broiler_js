@@ -20,4 +20,15 @@ export default class UsersController {
       .select('id', 'name', 'email', 'created_at', 'updated_at')
     return [users, ctx.request.input('aris')]
   }
+
+  public async login({ auth, request, response }) {
+    const email = request.input('email')
+    const password = request.input('password')
+    try {
+      const token = await auth.use('api').attempt(email, password)
+      return token
+    } catch {
+      return response.unauthorized('Invalid credentials')
+    }
+  }
 }

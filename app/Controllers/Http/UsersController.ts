@@ -52,6 +52,12 @@ export default class UsersController {
     return data
   }
 
+  public async getCount() {
+    const count = await Database.query().from('users').getCount()
+
+    return {"jumlah data" : count}
+  }
+
   public async store({ request , response }: HttpContextContract) {
     const input = request.only(['email', 'password'])
     try {
@@ -64,7 +70,7 @@ export default class UsersController {
   }
 
   public async show({ params }) {
-    const data = User.find(params.id)
+    const data = await User.find(params.id)
     return data
   }
 

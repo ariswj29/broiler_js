@@ -8,7 +8,14 @@ export default class AppProvider {
   }
 
   public async boot() {
-    // IoC container is ready
+    const {
+      DatabaseQueryBuilder
+    } = this.app.container.use('Adonis/Lucid/Database')
+
+    DatabaseQueryBuilder.macro('getCount', async function () {
+      const result = await this.count('* as total')
+      return BigInt(result[0].total)
+    })
   }
 
   public async ready() {

@@ -22,6 +22,7 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('users', 'UsersController.index')
 Route.get('usersDatabase', 'UsersController.indexDatabase')
+Route.get('user-count', 'UsersController.getCount')
 Route.get('user', 'UsersController.get')
 Route.post('user', 'UsersController.store')
 Route.get('user/:id', 'UsersController.show')

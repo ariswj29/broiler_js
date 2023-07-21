@@ -43,8 +43,12 @@ export default class UsersController {
     return { user, jwt }
   }
 
-  public async get() {
-    const data = User.all()
+  public async get({request}) {
+    const page = request.input('page', 1)
+    const limit = 10
+
+    const data = await Database.from('users').paginate(page, limit)
+
     return data
   }
 

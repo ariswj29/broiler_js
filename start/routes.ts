@@ -22,6 +22,11 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('users', 'UsersController.index')
 Route.get('usersDatabase', 'UsersController.indexDatabase')
+Route.get('user', 'UsersController.get')
+Route.post('user', 'UsersController.store')
+Route.get('user/:id', 'UsersController.show')
+Route.put('user/:id', 'UsersController.update')
+Route.delete('user/:id', 'UsersController.destroy')
 Route.post('login', 'UsersController.login')
 
 Route.get('/', async () => {
